@@ -1,3 +1,5 @@
+import { PortableTextBlock } from "@portabletext/types";
+
 // Define a type for the featured image (e.g., from Sanity)
 interface FeaturedImage {
   asset: {
@@ -8,7 +10,7 @@ interface FeaturedImage {
 }
 
 // Define a type for the content (e.g., Portable Text or string)
-type Content = any[] | string; // Replace `any[]` with a more specific type if possible
+type Content = PortableTextBlock[] | string; // Replace `any[]` with a more specific type if possible
 
 // Define a type for the category
 interface Category {
