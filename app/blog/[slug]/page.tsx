@@ -3,6 +3,7 @@ import SideBar from "@/app/components/SideBar";
 import { blogPost } from "@/app/lib/interface";
 import { client, urlFor } from "@/app/lib/sanity";
 import { PortableText } from "next-sanity";
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import Image from "next/image";
 import React from "react";
 import profilePix from "../../../public/Festus.jpg";
@@ -117,7 +118,10 @@ async function BlogArticle({ params }: { params: { slug: string } }) {
 
           <div className="">
             <div className="prose prose-blue prose-lg max-w-none px-2 py-10">
-              <PortableText value={data.content} components={myPortableTextComponents} />
+              <PortableText
+                value={data.content}
+                components={myPortableTextComponents}
+              />
             </div>
 
             <div className="flex justify-center items-center gap-3 my-20">
@@ -146,8 +150,14 @@ export default BlogArticle;
 
 const myPortableTextComponents = {
   types: {
-    image: ({ value }: any) => (
-      <Image src={urlFor(value).url()} width={200} height={200} alt="image" className="w-[100%] md:h-96" />
+    image: ({ value }: { value: SanityImageSource }) => (
+      <Image
+        src={urlFor(value).url()}
+        width={200}
+        height={200}
+        alt="image"
+        className="w-[100%] md:h-96"
+      />
     ),
   },
 };
